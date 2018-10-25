@@ -19,7 +19,7 @@ public class AtividadeService {
 	public Atividade salvar(Atividade entidade) {
 		return repo.save(entidade);
 	}
-	
+
 	public List<Atividade> buscarPorNome(String nome) {
 		return repo.findByNomeContaining(nome);
 	}
@@ -28,4 +28,13 @@ public class AtividadeService {
 		return repo.findById(id);
 	}
 
+	public void excluir(Integer id) {
+		repo.deleteById(id);
+	}
+
+	public Atividade alterarNome(Integer id, String nome) {
+		Atividade atividade = buscarPorId(id).get();
+		atividade.setNome(nome);
+		return salvar(atividade);
+	}
 }
